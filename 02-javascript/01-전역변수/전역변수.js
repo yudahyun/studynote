@@ -1,5 +1,8 @@
 "use strict"
 
 
-var a = 100;
-console.log(a);
+var num = 100;
+console.log(num);
+
+
+console.log("숫자 출력하기=%d",num);
