@@ -12,7 +12,6 @@ let todayYear = 2022;
 console.log("나는"+(todayYear - myAge)+"년 에 태어났습니다.");
 
 
-
-
+1[img](/img.jpg)
 
 
