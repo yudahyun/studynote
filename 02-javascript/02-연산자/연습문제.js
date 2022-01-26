@@ -9,3 +9,4 @@ numOfApples %= 10;
 
 numOfApples < 10 ? basket++ : basket;
 //10보다 작으면 1 , 아니면 0
+
