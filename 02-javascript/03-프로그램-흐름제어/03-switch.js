@@ -53,3 +53,38 @@ switch (국어){
     }else if(myMath == false){
         console.log("pass 하지 못했습니다");
     }
+
+    let math = "A"
+
+    switch(math){
+
+        case "A":
+        case "B":
+        case "C":
+            console.log("이 과목을 pass 했습니다.");
+            break;
+        default :
+            console.log("이 과목을 pass 하지 못했습니다..");
+            break;
+
+            
+        
+    }
+
+
+    let 내점수 = "C";
+
+    switch(내점수){
+
+        case "A" :
+            console.log("A점입니다.");
+            break;
+        case "B" :
+            console.log("B점입니다.");
+            break;
+        case "C":
+            console.log('C점입니다.');
+            break;
+        default :
+            console.log("낙제입니다.");
+    }
