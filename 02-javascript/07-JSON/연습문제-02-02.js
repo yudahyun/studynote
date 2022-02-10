@@ -4,5 +4,11 @@ const exam = {
     "남철": [65, 57, 71, 64],
     "혜진": [82, 76, 81, 83]
 }
-
-console.log(sum)
+for(const key in exam){
+    let sum = 0;
+    for(const p of exam[key]){
+        sum += p;
+    }
+    let avg = sum / exam[key].length;
+    console.log(key,sum,avg);
+}
