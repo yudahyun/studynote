@@ -26,4 +26,4 @@ var auth = "";
 for(var i = 0; i <5; i++){
     auth +=random(0,9);
 }
-console.log("인증번호" + auth);
+console.log( auth);
