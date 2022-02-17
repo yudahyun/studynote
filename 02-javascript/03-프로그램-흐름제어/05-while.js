@@ -65,7 +65,7 @@ let i = 2;
 
 while(i<= 9){
 
-   while(i = 2;){
+   while(i = 2){
         console.log("%d x %d = ",i,j.k);
         i ++;
    }

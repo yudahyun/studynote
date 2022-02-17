@@ -4,7 +4,7 @@ console.log(str1);
 const str2 = new String("hello world");
 console.log(str2);
 
-const msg = "hey";
+const msg = "01234554574";
 console.log("문자열 :" + msg);
 
 const len = msg.length;
@@ -15,7 +15,7 @@ console.log("두번째 글자 : " + msg[2]);
 
 const p2 = msg.indexOf("e");
 const p3 = msg.indexOf("e", p2+1);
-console.log(p2);
+console.log(p2+"요기");
 console.log(p3);
 
 const p4 =msg.lastIndexOf("y");
@@ -28,7 +28,9 @@ if(msg.indexOf("hey")>-1){
 }
 
 const substring1 = msg.substring(0,2);
-console.log("앞 문자열 자르기"+substring1);
+
+const substring2 = msg.substring(2);
+console.log("앞 문자열 자르기"+substring2);
 
 const up = msg.toUpperCase();
 console.log(up);
