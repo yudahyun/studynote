@@ -93,14 +93,31 @@ var grade1 = [
     [54,90,80],
     [100,99,98]
 ];
-var sum = 0, avg = 0;
+var sum1 = 0, avg1 = 0 ,all=0;
 
-//총점 구하기
-for(let i = 0 ; i <grade1.length;i++){
-    sum = 0;
-    for(let j = 0 ; j <grade1[i].length;j++){
-        sum += grade1[i][j];
-        avg = sum / grade1[i].length
-    }
-    console.log(student[i]+"의 총합은 "+sum +"점"+"평균은"+avg);
+//총점 ,평균 구하기
+for(let i = 0; i< grade1.length;i++){
+    sum1 = 0;
+  for(let j = 0; j < grade1[i].length;j++){
+      sum1 += grade1[i][j];
+      avg1 = sum1 / grade1[i].length;
+      //all += avg1;
+      //all /=  student[i].length;
+    }    
+    console.log(student[i],sum1,avg1,all);
+    
 }
+//10. 
+
+const inven =[
+    [291,500],[586,320],[460,100],[558,120],[18,92],[72,30]
+];
+
+let sum2 = 0;
+for(let i = 0; i<inven.length;i++){
+    let item_price = inven[i][0] * (inven[i][1]*0.9);
+    sum2 += item_price;
+    console.log(item_price)
+}
+console.log(sum2);
+   
