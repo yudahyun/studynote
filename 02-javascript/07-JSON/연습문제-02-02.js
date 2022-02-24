@@ -4,11 +4,19 @@ const exam = {
     "남철": [65, 57, 71, 64],
     "혜진": [82, 76, 81, 83]
 }
-for(const key in exam){
+let j = [];
+let arr = [];
+
+for(const i in exam){
     let sum = 0;
-    for(const p of exam[key]){
+    for(const p of exam[i]){
         sum += p;
+        
     }
-    let avg = sum / exam[key].length;
-    console.log(key,sum,avg);
+    let avg = sum / exam[i].length;
+    arr.push([i,sum,avg]);
+    
 }
+
+//console.log(arr);
+

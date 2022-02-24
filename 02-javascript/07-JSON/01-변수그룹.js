@@ -10,7 +10,11 @@ console.log("번호 :" + student['phoneno']);
 const keyname = 'phoneno';
 console.log(student[keyname]);
 
-const keys = Object.getOwnPropertyNames(student);
+const keys = Object.getOwnPropertyNames(JSON);
+//const keys = Object.getOwnPropertyDescriptors(JSON);
+//const keys = Object.getOwnPropertySymbols(JSON);
+//const keys = Object.getPrototypeOf(JSON);
+
 console.log(keys);
 
 for ( const k of keys){

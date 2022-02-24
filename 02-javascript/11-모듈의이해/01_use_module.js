@@ -1,3 +1,3 @@
-const my = require ("./Mymodule");
+const 여기야 = require ("./Mymodule");
 
-my();
+여기야();

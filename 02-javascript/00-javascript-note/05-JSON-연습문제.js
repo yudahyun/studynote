@@ -53,6 +53,8 @@ covid19 = [
 ]
 var 합  = 0;
 var 평균 = 0;
+
+
 for(const p of covid19){
    합 += p['active'];
   // console.log(p['active']);
@@ -73,6 +75,9 @@ for(const j of covid19){
         //console.log(max_active);       
     }
 }
-
-console.log(max_date);
+const addr ={
+    maxday : max_date,
+    maxactive : max_active
+}
+console.log(addr);
 
