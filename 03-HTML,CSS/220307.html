@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            background-color: #1cbb9c;
+            padding: 77px 0;
+        }
+
+        .header h1 {
+            color: #fff;
+            font-weight: bold;
+            font-size: 40px;
+            text-align: center;
+        }
+
+        .header p {
+            color: #fff;
+            text-align: center;
+        }
+
+        .nav {
+            background-color: #333;
+
+        }
+
+        .nav a {
+            font-weight: 500;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px;
+            display: inline-block;
+        }
+
+        .nav a.active {
+            background-color: #666;
+        }
+
+        .nav div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .side {
+            padding: 20px;
+            background-color: #eee;
+            border-right: 1px solid #ddd;
+        }
+
+        .side h1 {
+            font-size: 26px;
+        }
+
+        .side p {
+            font-weight: bold;
+
+        }
+
+        .grey-box {
+            background-color: #aaa;
+
+            width: calc(100% - 40px);
+
+            padding: 20px;
+            height: 200px;
+        }
+
+        .grey-box+div {
+            padding: 5px 0;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .mini-grey-box {
+            background-color: #aaa;
+            width: calc(100% - 40px);
+
+            padding: 20px;
+            height: 50px;
+            margin: 10px 0;
+        }
+
+        .display-flex {
+            display: flex;
+        }
+
+        .li-list {
+            display: flex;
+            align-items: center;
+
+        }
+
+        .li-list img {
+            width: 80px;
+            padding-left: 5px;
+        }
+
+        .li-list p {
+            padding-left: 15px;
+        }
+
+        .list-txt p:first-child {
+            font-weight: bold;
+        }
+
+        .li-list {
+            padding: 0;
+            border-bottom: 1px dotted #ccc;
+            /* margin: 0px 0 15px 15px; */
+            padding: 6px 0 6px 0;
+
+        }
+
+        .ul-list {
+            flex-grow: 1;
+            padding: 20px;
+        }
+       
+        footer {
+            background-color: #ddd;
+            text-align: center;
+            font-size: 26px;
+            letter-spacing: -1px;
+            padding: 33px;
+            font-weight: bold;
+        }
+        .ul-list + div{
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>
+            My Website
+        </h1>
+        <p>
+            <span>A responsive</span>
+            websidte created by me.
+        </p>
+    </div>
+    <div class="nav">
+        <div class="link-list">
+            <div>
+                <a class="active" href="">Home</a>
+                <a href="">Link</a>
+                <a href="">Link</a>
+            </div>
+
+            <a href="">Link</a>
+        </div>
+    </div>
+    <div class="display-flex">
+
+
+        <div class="side">
+            <h1>
+                About Me
+            </h1>
+            <p>
+                photo of me:
+            </p>
+            <div class="grey-box">
+                <img src="" alt="Image">
+            </div>
+            <div>
+                Some text about me in culpa qui officia deserunt moliuanim...
+            </div>
+            <div class="title">
+                More Text
+            </div>
+            <div class="notice">
+                Lorem ipsum dolor sit amet .
+            </div>
+            <div class="mini-grey-box">
+                <img src="" alt="Image">
+            </div>
+            <div class="mini-grey-box">
+                <img src="" alt="Image">
+            </div>
+            <div class="mini-grey-box">
+                <img src="" alt="Image">
+            </div>
+        </div>
+        <div class="ul-list">
+            <div class="li-list">
+                <div>
+                    <img src="./img/thumb-01.jpg" alt="">
+                </div>
+
+                <div class="list-txt">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur
+                    </p>
+                    <p>
+                        adipisicing elit.
+                    </p>
+                </div>
+            </div>
+            <div class="li-list">
+                <div>
+                    <img src="./img/thumb-02.jpg" alt="">
+                </div>
+                <div class="list-txt">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur
+                    </p>
+                    <p>
+                        adipisicing elit.
+                    </p>
+                </div>
+            </div>
+            <div class="li-list">
+                <div>
+                    <img src="./img/thumb-03.jpg" alt="">
+                </div>
+                <div class="list-txt">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur
+                    </p>
+                    <p>
+                        adipisicing elit.
+                    </p>
+                </div>
+            </div>
+            <div class="li-list">
+                <div>
+                    <img src="./img/thumb-04.jpg" alt="">
+                </div>
+                <div class="list-txt">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur
+                    </p>
+                    <p>
+                        adipisicing elit.
+                    </p>
+                </div>
+            </div>
+            <div class="li-list">
+                <div>
+                    <img src="./img/thumb-05.jpg" alt="">
+                </div>
+                <div class="list-txt">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur
+                    </p>
+                    <p>
+                        adipisicing elit.
+                    </p>
+                </div>
+            </div>
+            <div class="li-list">
+                <div>
+                    <img src="./img/thumb-06.jpg" alt="">
+                </div>
+                <div class="list-txt">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur
+                    </p>
+                    <p>
+                        adipisicing elit.
+                    </p>
+                </div>
+            </div>
+            <div class="li-list">
+                <div>
+                    <img src="./img/thumb-07.jpg" alt="">
+                </div>
+                <div class="list-txt">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur
+                    </p>
+                    <p>
+                        adipisicing elit.
+                    </p>
+                </div>
+            </div>
+            <div class="li-list">
+                <div>
+                    <img src="./img/thumb-08.jpg" alt="">
+                </div>
+                <div class="list-txt">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur
+                    </p>
+                    <p>
+                        adipisicing elit.
+                    </p>
+                </div>
+            </div>
+            <div class="li-list">
+                <div>
+                    <img src="./img/thumb-09.jpg" alt="">
+                </div>
+                <div class="list-txt">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur
+                    </p>
+                    <p>
+                        adipisicing elit.
+                    </p>
+                </div>
+            </div>
+            <div class="li-list">
+                <div>
+                    <img src="./img/thumb-10.jpg" alt="">
+                </div>
+                <div class="list-txt">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur
+                    </p>
+                    <p>
+                        adipisicing elit.
+                    </p>
+                </div>
+            </div>
+            <div class="li-list">
+                <div>
+                    <img src="./img/thumb-11.jpg" alt="">
+                </div>
+                <div class="list-txt">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur
+                    </p>
+                    <p>
+                        adipisicing elit.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        Footer
+    </footer>
+</body>
+
+</html>
