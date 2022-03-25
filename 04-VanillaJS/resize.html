@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        .box-xs {
+            background-color: #f00;
+        }
+
+        .box-sm {
+            background-color: #0f0;
+        }
+
+        .box-md {
+            background-color: #00f;
+        }
+
+        .box-lg {
+            background-color: #ff0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="con"></div>
+    <script>
+        // 넓이를 구간별 문자열로 반환하는 함수
+        function check_responsive() {
+            var w = window.innerWidth;
+            var responsive = "xs"; // 조건에 다 맞지 않을 경우
+
+            if (w >= 1200) {
+                responsive = "lg"
+            }else if (w >= 992) {
+                responsive = "md"
+            }else if (w >= 768) {
+                responsive = "sm"
+            };
+            // 브라우저의 구간 판정;
+
+            return responsive;
+        }
+
+        function set_responsive() {
+            //브라우저의 구간 판정  > 해상도에따라 달라진거 하나 리턴
+            const responsive = check_responsive();
+            const con = document.querySelector("#con");
+
+            switch (responsive) {
+                case "xs":
+                    con.innerHTML = "<div class ='box-xs'></div>";
+                    break;
+                case "sm":
+                    con.innerHTML = "<div class ='box-sm'></div>";
+                    break;
+                case "md":
+                    con.innerHTML = "<div class ='box-md'></div>";
+                    break;
+                default:
+                    con.innerHTML =  "<div class ='box-lg'></div>";
+                    break;
+            }
+        }
+
+
+        window.addEventListener("resize",set_responsive);
+        //창크기 변화 안하더라도 1회 실행
+        set_responsive();
+    </script>
+</body>
+
+</html>

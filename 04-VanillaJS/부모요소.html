@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="#" data-color="#f60" class="find-parent">parent</a>
+            <a href="#" data-color="#f60" class="find-parents">parent</a>
+        </li>
+        <li class="list-group-item">
+            <a href="#" data-color="#60f" class="find-parent">parent</a>
+            <a href="#" data-color="#60f" class="find-parents">parent</a>
+        </li>
+        <li class="list-group-item">
+            <a href="#" data-color="#0a0" class="find-parent">parent</a>
+            <a href="#" data-color="#0a0" class="find-parents">parent</a>
+        </li>
+    </ul>
+    <script>
+        document.querySelectorAll(".find-parent").forEach((v,i)=>{
+            v.addEventListener("click",(e)=>{
+                e.preventDefault();
+                //이벤트가 발생한 자기 자신을 가져온다
+                const current = e.currentTarget;
+                //자신의 칼라 가져옴
+                const color = current.dataset.color;
+                //클릭된 부모요소를 조회
+                const parent = current.parentElement;
+
+                console.log(parent);
+                //부모의 색깔 바꿈
+                parent.style.backgroundColor =color;
+                
+            })
+        });
+        
+        
+        
+        document.querySelectorAll(".find-parents").forEach((v,i)=>{
+            v.addEventListener("click",(e)=>{
+                e.preventDefault();
+                //이벤트가 발생한 자기 자신을 가져온다
+                const current = e.currentTarget;
+                //자신의 칼라 가져옴
+                const color = current.dataset.color;
+                //클릭된 부모요소 중 클래스를 찾음
+                const parent = current.closest(".list-group");
+
+                console.log(parent);
+                //부모의 색깔 바꿈
+                parent.style.backgroundColor =color;
+                
+            })
+        });
+    </script>
+</body>
+</html>

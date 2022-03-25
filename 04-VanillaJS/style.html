@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            margin: 10px auto;
+            border:1px solid red ;
+            padding:20px;
+            text-align: center;
+        }
+        .box2{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="box1">
+        <h1>박스 영역입니다</h1>
+    </div>
+    <input type="button" id="btn1" value="폰트 red">
+    <input type="button" id="btn2" value="폰트 green">
+    <input type="button" id="btn3" value="폰트 blue">
+    <input type="button" id="btn4" value="배경 red">
+    <input type="button" id="btn5" value="배경 blue">
+    <input type="button" id="btn6" value="width = 50%">
+    <input type="button" id="btn7" value="box2 적용">
+    <input type="button" id="btn8" value="box2 적용">
+</body>
+<script>
+    document.querySelector("#btn1").addEventListener("click",function(e){
+        const box = document.getElementById('box');
+        box.style.color="#ff0000";
+    });
+
+
+    document.querySelector("#btn2").addEventListener("click",(e) =>  document.getElementById("#box").style.color="red");
+</script>
+</html>

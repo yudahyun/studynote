@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+
+        .pull-left{
+            float: left;
+        }
+
+        ul.wrap:after{
+            float: none;
+            clear: both;
+            content: "";
+            display: block;
+
+        }
+
+        menu a{
+            background: #fff;
+
+            display: block;
+            width: 200px;
+            height: 48px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .menu a:hover{
+            background: #f1f1f1;
+        }
+
+        .sub{
+            position: absolute;
+            z-index: 1;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 190ms ease-out;
+        }
+
+        .menu-item{
+            background: #f1f1f1;
+            float: left;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="wrap">
+        <li class="menu-item"><a href="">큰 메뉴 1</a>
+            <ul class="sub">
+                <li><a href="">작은메뉴 1</a></li>
+                <li><a href="">작은메뉴 2</a></li>
+                <li><a href="">작은메뉴 3</a></li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="">큰 메뉴 2 </a>
+                <ul class="sub">
+                    <li><a href="">작은메뉴 1</a></li>
+                    <li><a href="">작은메뉴 2</a></li>
+                    <li><a href="">작은메뉴 3</a></li>
+                </ul>
+           
+        </li>
+        <li class="menu-item">
+            <a href="">큰 메뉴 3 </a>
+                <ul class="sub">
+                    <li><a href="">작은메뉴 1</a></li>
+                    <li><a href="">작은메뉴 2</a></li>
+                    <li><a href="">작은메뉴 3</a></li>
+                </ul>
+            </a>
+        </li>
+    </ul>
+    <h1>
+        이걸 가려라 
+    </h1>
+</body>
+<script>
+    document.querySelectorAll(".menu-item").forEach((v,i)=>{
+        
+        v.addEventListener("mouseover",(e)=>{
+            const current = e.currentTarget;
+            const sub = current.querySelector(".sub");
+           
+            sub.style.maxHeight = sub.scrollHeight + "px";
+            
+
+        });
+        v.addEventListener("mouseout",(e)=>{
+            const current = e.currentTarget;
+            const sub = current.querySelector(".sub");
+
+            sub.style.maxHeight = null;
+            
+
+        });
+    });
+</script>
+</html>

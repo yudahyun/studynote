@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" data-name="자바" id="btn1" class="btn" value="javascript" data-age="20" data-color="#f00">
+    <input type="button" data-name="자바2" id="btn1" class="btn" value="javascript" data-age="30" data-color="blue">
+<h1 id="here"></h1>
+    <script>
+        document.querySelectorAll(".btn").forEach((v,i) => {
+           v.addEventListener("click",(e)=>{
+                const name = e.currentTarget.dataset.name;
+                const age = e.currentTarget.dataset.age;
+                document.getElementById("here").innerHTML ="이름"+name;                
+           });
+        });
+
+        document.querySelectorAll("*[data-color]").forEach((v,i)=>{
+            v.style.color = v.dataset.color;
+        });
+    </script>
+</body>
+</html>

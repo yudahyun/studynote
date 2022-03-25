@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 25%;
+        }
+
+        /* Change background color of buttons on hover */
+        .tablink:hover {
+            background-color: #777;
+        }
+
+        .tablink.active {
+         background-color: red;
+        }
+
+        /* Set default styles for tab content */
+        .tabcontent {
+            display: none;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .tabcontent.active {
+           
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="London" class="tabcontent active" data-city="London">
+        <h1>London</h1>
+        <p>London is the capital city of England.</p>
+    </div>
+
+    <div id="Paris" class="tabcontent" data-city="Paris">
+        <h1>Paris</h1>
+        <p>Paris is the capital of France.</p>
+    </div>
+
+    <div id="Tokyo" class="tabcontent" data-city="Tokyo">
+        <h1>Tokyo</h1>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
+
+
+    <button class="tablink active" data-target="London">London</button>
+    <button class="tablink" data-target="Paris">Paris</button>
+    <button class="tablink" data-target="Tokyo">Tokyo</button>
+    <script>
+        document.querySelectorAll(".tablink").forEach((v, i) => {
+            v.addEventListener("click", (e) => {
+                //현재 클릭된 항목의 인덱스 번호
+                const currentIndex = i;
+
+                //클린된 버튼에 있는 target 값 
+                const currentTarget = e.currentTarget.dataset.target;
+
+                //모든 버튼에 대한 active 클래스 해제
+                document.querySelectorAll(".tablink").forEach((v1, i1) => {
+                    if (currentIndex == i1) {
+                        v1.classList.add("active");
+                    } else {
+                        v1.classList.remove("active");
+                    }
+                });
+
+                document.querySelectorAll(".tabcontent").forEach((v2, i2) => {
+                    if (v2.dataset.city == currentTarget) {
+                        v2.classList.add("active");
+                    } else {
+                        v2.classList.remove("active");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

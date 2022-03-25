@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .box{
+            background:linear-gradient(0deg , #fff, #000) ;
+           
+            height: 1000px;
+            border: 10px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="con">
+        <div class="box"></div>
+    </div>
+    <script>
+        //스크롤은 대부분 브라우저에서 수행되므로 윈도우 객체에서 이벤트를 감지한다.
+        window.addEventListener( "scroll" , (e) => {
+            //스크롤바의 Y좌표
+            const scrollTop = window.scrollY;
+
+            //웹 브라우저의 창높이
+            const windowHeight = window.screen.availHeight;
+
+            //HTML 문서 높이
+            const documentHeight = document.body.scrollHeight;
+
+        
+          
+            console.group("");
+            console.log("scrollTop  : "+scrollTop);
+            console.log("windowHeight  : "+windowHeight);
+            console.log("documentHeight  : "+documentHeight);
+            console.groupEnd("");
+            if(scrollTop + windowHeight >= documentHeight){
+                console.log('스크롤이 맨 끝에 도착함');
+                const con = document.querySelector("#con");
+                con.innerHTML += "<div class='box'></div>";
+            }
+        });
+    </script>
+</body>
+</html>

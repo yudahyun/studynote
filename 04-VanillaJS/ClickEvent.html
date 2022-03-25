@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>  
+        <div id="listener" class="event-box">
+            마우스 여기
+        </div>
+
+        <script>
+            const eventBox = document.querySelector("#listener");
+
+            eventBox.addEventListener("click",function(e){
+                e.currentTarget.innerHTML = "클릭함";
+            });
+
+            eventBox.addEventListener("mousemove",e => e.currentTarget.innerHTML="마우스오바");
+        </script>
+</body>
+</html>

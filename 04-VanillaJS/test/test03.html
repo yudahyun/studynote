@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <img src="cat1.jpeg" id="img" alt="" width="480">
+
+    <!--  3초마다 한번씩 자동으로 변경 -->
+
+    <script>
+        const img = ["cat1.jpeg","cat2.jpeg","cat3.jpeg"];
+        let num = 0;
+
+        setInterval(function(){
+            num = (num + 1) % img.length;
+            document.getElementById("img").setAttribute("src",img[num]);
+        },3000);
+    </script>
+</body>
+
+</html>

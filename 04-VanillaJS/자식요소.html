@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="list">
+        <li id="one">One</li>
+        <li id="two" class="blue">two
+            <ul>
+                <li id="a">a</li>
+                <li id="b" class="blue">b</li>
+                <li id="c" class="red">c</li>
+                <li id="d">d</li>
+            </ul>
+        </li>
+        <li id="three">three</li>
+        <li id="four" class="blue">four</li>
+    </ul>
+    <button type="button" id="btn1">상위 ul의 자식들</button>
+    <button type="button" id="btn2">two의 하위 ul 자식들</button>
+    <script>
+        document.querySelector("#btn1").addEventListener("click", (e) => {
+
+            //코드 줄맞춤을 위한 줄 바꿈도 텍스트로 인식함
+            //지정된 요소의 텍스으와 하위 엘리먼트를 모두 조회
+            console.log(document.querySelector("#list").childNodes);
+
+            //불필요한 요소를 제거하고 하위 엘리멘트만 조회
+            console.log(document.querySelector("#list").children);
+
+            const children = document.querySelector("#list").children;
+            const childrenArr = Array.from(children);
+
+
+            childrenArr.forEach((v, i) => {
+                v.style.backgroundColor = "#0066ff";
+            });
+
+        });
+            document.querySelector("#btn2").addEventListener("click", (e) => {
+                const childrenArr = Array.from(document.querySelector("#two > ul").children);
+
+                childrenArr.forEach((v, i) => {
+                    v.style.color = "#fff";
+                    console.log("클릭");
+                });
+            });
+    </script>
+</body>
+
+</html>
