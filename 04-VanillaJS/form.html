@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- action 속성은 form 내의 input 요소의 입력된 내용을 전달받을 백엔드의 주소 -->
+    <!-- form 안에서 submit 버튼이 눌렸을 때 이벤트는 버튼이 아닌 form 자제체 적용 -->
+    <form id="myform" action="www.daum.net">
+        <label for="username">이름</label>
+        <input type="text" name="username" id="userid1">
+
+        <label for="userpass">이름</label>
+        <input type="password" name="userpass" id="userid2">
+        <button type="submit" id="btn1">입력값 확인</button>
+    </form>
+    <div id="div">
+        여기 뿌림 
+    </div>
+    <script>
+        // 
+        const myform = document.querySelector("#myform");
+        myform.addEventListener("submit",e=>{
+            //링크 이동하는거 막음
+            e.preventDefault();
+
+            const username =document.querySelector('#userid1');
+            const userpass = document.querySelector('#userid2');
+
+            if(!username.value){
+                alert("이름을 입력하세요");
+                //커서 강제이동
+                username.focus();
+                //의미 없음으로 그냥 중단
+                return;
+            }
+
+            if(!userpass.value){
+                alert("비번 입력");
+                userpass.focus();
+                //의미 없음으로 그냥 중단
+                return;
+            }
+
+            document.querySelector("#div").innerHTML="이름은"+username.value+"비번은"+userpass.value;
+        });
+
+    </script>
+</body>
+</html>

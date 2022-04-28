@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="myform">
+        <label for="subject">과목</label>
+        <select name="subject" id="subject">
+            <option value="">--선택하세요--</option>
+            <option value="html">HTML</option>
+            <option value="css">css</option>
+            <option value="javascript">java</option>
+        </select>
+        <button type="submit">입력값 확인</button>
+        <div id="div">
+
+        </div>
+    </form>
+    <script>
+        document.querySelector("#myform").addEventListener("submit",e=>{
+            e.preventDefault();
+
+            const dropdown = document.querySelector("#subject");
+
+            const choose = dropdown.selectedIndex;
+
+            if(choose == 0){
+                alert("선택하세요");
+                return;
+            }
+
+            const value = dropdown[choose].value;
+            document.querySelector("#div").innerHTML = value;
+        });
+
+        document.querySelector("#myform").addEventListener("change",e=>{
+            const choose = e.currentTarget.selectedIndex;
+            const value = e.currentTarget[choose].value;
+
+            if(value){
+                window.open(value);
+            }
+        }); 
+        document.querySelector("#src").addEventListener("change",e=>{
+                document.querySelector("#dsc").value = e.currentTarget.value;
+
+        });
+
+        document.querySelector("#keycheck").addEventListener("keyup".e=>{
+            document.querySelector("#keycopy").innerHTML=e.currentTarget.value;
+        });
+
+
+    </script>
+</body>
+</html>

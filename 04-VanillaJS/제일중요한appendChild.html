@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        li{
+            padding: 5px 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+        }
+
+        li:first-child{
+            border-top:1px solid #ddd;
+        }
+        .blue{
+            background-color: aliceblue;
+        }
+
+        .orange{
+            background-color: antiquewhite;
+        }
+
+        .pink{
+            border-color: lavenderblush;
+        }
+
+
+    </style>
+</head>
+<body>
+    <input type="text" id="comment" />
+    <button type="button" id="appendChild">appendChild</button>
+    <button type="button" id="insertBefore1">insertBefore1</button>
+    <button type="button" id="insertBefore2">insertBefore2</button>
+    <ul id="list"></ul>
+
+    <script>
+        //변경할 리스트를 함수에 담아줌
+        const list =  document.querySelector("#list");
+
+        //사용자가 입력할 input 태그
+        const comment = document.querySelector("#comment");
+
+        //동적으로 li 태그를 element 객체를 생성하여 리턴하는 함수
+        const getItem = (clsName) => {
+            //li 생성해라  
+            const li = document.createElement("li");
+            //li 태그에 클래스 추가
+            li.classList.add("item",clsName);
+
+            //사용자가 입력한 내용을 안에 집어 넣어라
+            li.innerHTML = comment.value;
+
+            //자기자신 선택하면 지워져라
+            li.addEventListener("click",(e)=>{
+                e.currentTarget.remove();
+            });
+
+            //~~라는 내용 생성 해냈다
+            return li;
+        }
+
+       
+        // 자식요소 추가 버튼 클릭 이벤트
+
+        document.querySelector("#appendChild").addEventListener("click",(e)=>{
+
+            //li 태그 반환 받음
+            const li = getItem("blue");
+
+            //넣어서 완성
+            list.appendChild(li);
+
+        });
+
+        document.querySelector("#insertBefore1").addEventListener("click",(e)=>{
+          
+            list.insertBefore(getItem("orange"),null);
+        });
+
+        document.querySelector("#insertBefore2").addEventListener("click",(e)=>{
+            list.insertBefore(getItem("pink"),document.querySelector("li:first-child"));
+        });
+</script>
+</body>
+</html>

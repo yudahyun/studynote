@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+
+        <div class="box">
+            <h2>학과별 학생 수</h2>
+            <canvas id="myChart1"></canvas>
+        </div>
+        <div class="box">
+            <h2>학년에 따른 평균 나이 변화</h2>
+            <canvas id="myChart2"></canvas>
+        </div>
+        <div class="box">
+            <h2>학년별 평균 키와 평균 몸무게</h2>
+            <canvas id="myChart3"></canvas>
+        </div>
+    </div>
+    <script src="dataset.js"></script>
+
+    <script>
+
+let department = [];
+        let studentCountAll = [];
+
+        for (let i = 0; i < student.length; i++) {
+            // console.log(key.deptno);
+            department[i] = student[i].deptno;
+
+        }
+        // console.log(department);
+        department.forEach(x => {
+            if (studentCountAll[x]) {
+                studentCountAll[x] = studentCountAll[x] + 1;
+            } else {
+                studentCountAll[x] = 0 + 1;
+            }
+        });
+        // console.log(department);
+        // console.log(studentCountAll);
+        let studentCount = [];
+        for (let i in studentCountAll) {
+            // console.log(studentCountAll[i]);
+            studentCount.push(studentCountAll[i]);
+
+        }
+        console.log(studentCount);
+
+        // 백업
+        //학과 불러오기
+        let department = [];
+        let count = "0";
+
+        for (let i = 0; i < student.length; i++) {
+            // console.log(key.deptno);
+            
+                department[i] = student[i].deptno;
+                
+                
+            }
+            
+            const uniqueDepartment = department.filter((element, index) => {
+                return department.indexOf(element) === index;
+            });
+
+            console.log(uniqueDepartment);
+        //  let uniqueValues =[...new Set(department)];
+        //  console.log(uniqueValues);
+            // console.log(department);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</body>
+
+</html>

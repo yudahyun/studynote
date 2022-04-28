@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        영화진흥위원회 박스오피스 순위
+    </h1>
+    <input type="date" id="targetDt">
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>순위</th>
+                <th>영화제목</th>
+                <th>관객수</th>
+                <th>
+                    개봉일
+                </th>
+            </tr>
+        </thead>
+        <tbody id="list-body">
+            <tr>
+                <th>순위</th>
+                <th>영화제목</th>
+                <th>관객수</th>
+                <th>
+                    개봉일
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const getMovieRank = async (targetDt) => {
+            const listBody = document.querySelector("#list-body");
+            const old_item = listBody.getElementsByTagName("tr");
+
+            console.log(old_item);
+            Array.from(old_item).map((v, i) => {
+                listBody.removeChild(v);
+            });
+
+            let json = null;
+
+            try {
+                json = await axios.get(
+                    "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json", {
+                        params: {
+                            key: "64377d18107f4de17e14136be76b61d9",
+                            targetDt: targetDt,
+                        }
+                    });
+                console.log(json);
+
+            } catch (err) {
+                console.error(err);
+                alert("요청 처리 실패");
+                return;
+            }
+
+            if (json != null) {
+                const movieNm = [];
+                const audiCnt = [];
+                const {data} = json;
+
+             
+                data.boxOfficeResult.dailyBoxOfficeList.map((v, i) => {
+                    console.log(v);
+                    const tr = document.createElement("tr");
+
+                    const td1 = document.createElement('td');
+                    td1.innerHTML = v.rank;
+
+                    const td2 = document.createElement('td');
+                    td2.innerHTML = v.movieNm;
+
+                    const td3 = document.createElement('td');
+                    td3.innerHTML = v.audiCnt;
+
+                    const td4 = document.createElement('td');
+                    td4.innerHTML = v.openDt;
+
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+
+                    listBody.appendChild(tr);
+
+                    movieNm.push(v.movieNm);
+                    audiCnt.push(v.audiCnt);
+
+                });
+            }
+        };
+        document.querySelector("#targetDt").addEventListener("change", (e) => {
+       
+            const date = e.currentTarget.value.replaceAll("-", "");
+            getMovieRank(date);
+        });
+
+        //하루전을 계샌
+        const date = new Date();
+        const b = date.getDate() - 1;
+        date.setDate(b);
+
+        let yy = date.getFullYear();
+        let mm = date.getMonth() + 1;
+        let dd = date.getDate();
+
+        if(mm <10){
+            mm = "0" + mm;
+        }else if(dd <10){
+            dd = "0" + dd;
+        }
+
+        const sendDate = "" + yy+ mm+dd;
+        getMovieRank(sendDate);
+    </script>
+</body>
+
+</html>

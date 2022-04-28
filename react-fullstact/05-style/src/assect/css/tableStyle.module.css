@@ -1,0 +1,42 @@
+.tableStyle{
+    border: 2px dotted #000;
+    margin : 20px auto;
+    border-spacing: 0px;
+    width: 1080px;
+    
+    padding: 0px;
+}
+
+
+
+.td{
+    border-spacing: 0px;
+    border-style: none;
+    padding: 4px;
+    text-align: center;
+    color: #222;
+    border: 1px solid #f1f1f1;
+
+}
+.td.bold{
+    font-weight: bold;
+}
+.Thead{
+    font-weight:bold ;
+    padding:10px;
+    background:#000;
+}
+.Thead th{
+    padding:5px;
+    color:#fff;
+    text-align: center;
+}
+.td-st{
+    color :red;
+}
+.td-first{
+    background: blue
+}
+.trStyle:nth-child(even){
+    background:#ccc;
+}

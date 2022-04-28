@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div data-include="inc/header.html"> </div>
+        <!-- section -->
+        <section>
+            <form name="form" id="professor-form">
+                   <!-- 수정할 대상에 대한 일련번호값을 포함해야 하므로 hidden필드로 처리 -->
+                   <input type="hidden" name="id" id="id">
+                <div class="form-group">
+                    <label for="name">
+                        이름 <span class="text-danger">*</span>
+                    </label>
+                    <div>
+                        <input type="text" name="name" id="name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="userid">
+                        아이디 <span class="text-danger">*</span>
+                    </label>
+                    <div>
+                        <input type="text" name="userid" id="userid">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="grade">
+                        학년 <span class="text-danger">*</span>
+                    </label>
+                    <div>
+                        <input type="text" name="grade" id="grade">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="idnum">
+                        주민번호 <span class="text-danger">*</span>
+                    </label>
+                    <div>
+                        <input type="text" name="idnum" id="idnum">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="birthdate">
+                        생년월일 <span class="text-danger">*</span>
+                    </label>
+                    <div>
+                        <input type="date" name="date" id="date">
+                        <input type="time" value="00:00:00" name="time" id="time">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="height">
+                        전화번호
+                    </label>
+                    <div>
+                        <input type="text" name="tel" id="tel">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="height">
+                        키 
+                    </label>
+                    <div>
+                        <input type="text" name="height" id="height">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="height">
+                        몸무게
+                    </label>
+                    <div>
+                        <input type="text" name="weight" id="weight">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="deptno">
+                         학과번호
+                    </label>
+                    <div>
+                        <input type="text" name="deptno" id="deptno">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="deptno">
+                         담당교수 일련번호
+                    </label>
+                    <div>
+                        <input type="text" name="profno" id="profno">
+                    </div>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <button type="submit">저장하기</button>
+                    <button type="reset">다시작성</button>
+                </div>
+            </form>
+         
+        </section>
+        <!-- footer -->
+        <div data-include="inc/footer.html"> </div>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="assets/js/include.js"></script>
+        <script>
+           ( async ()=>{
+                /*파라미터 받기*/
+                const params = new URLSearchParams(window.location.search);
+                const id = params.get('id');
+
+                // console.log(id);
+               
+                //파라미터가 정삭적으로 이동하지 않는다면 전 페이지 이동 처리후 수행 중단
+                if(!id){
+                    alert('학과번호가 없습니다.');
+                      history.back();
+                    return;
+                }
+
+                /*Ajax 요청*/
+                let json =null;
+
+                try{
+                    json = await axios.get(`http://localhost:3000/student/${id}`);
+                    // console.log(json);
+                }
+                catch(e){
+                    console.error(e);
+                    alert("요청처리 실패");
+                    return;
+                }
+
+
+                //가져온 데이터가 있다면 
+                if(json != null){
+                    const {data} =json;
+                    document.querySelector("#id").value = data.id;
+                    document.querySelector("#name").value = data.name;
+                    document.querySelector("#userid").value = data.userid;
+                    document.querySelector("#grade").value = data.grade;
+                    document.querySelector("#idnum").value = data.idnum;
+                    document.querySelector("#date").value = (data.birthdate).substring(0,10);
+                    document.querySelector("#time").value = "00:00:00";
+                    document.querySelector("#tel").value = data.tel;
+                    document.querySelector("#height").value = data.height;
+                    document.querySelector("#weight").value = data.weight;
+                    document.querySelector("#deptno").value = data.deptno;
+                    document.querySelector("#profno").value = data.profno;
+                }
+            })();
+
+            // 수정버튼 submit 이벤트
+            document.querySelector("#professor-form").addEventListener("submit",async(e)=>{
+                e.preventDefault();
+
+                //입력값 받아오기
+                const id = document.querySelector("#id").value;
+                const name = document.querySelector("#name").value;
+                const userid = document.querySelector("#userid").value;
+                const grade = document.querySelector("#grade").value;
+                const idnum = document.querySelector("#idnum").value;
+              
+                const date = new Date(document.querySelector("#date").value);   
+                const birthdate =date.toISOString();
+                const tel = document.querySelector("#tel").value;
+                const height = document.querySelector("#height").value;
+                const weight = document.querySelector("#weight").value;
+                const deptno= document.querySelector("#deptno").value;
+                const profno= document.querySelector("#profno").value;
+
+                //입력값에 대한 유효성 검사는 생략
+                let json = null;
+                try{
+                    json = axios.put(`http://localhost:3000/student/${id}`,{
+                        name : name,
+                        userid: userid,
+                        grade : grade,
+                        idnum :idnum,
+                        birthdate : birthdate,
+                        tel: tel,
+                        weight :weight,
+                        height :height,
+                        deptno : deptno,
+                        profno : profno,
+                        
+                    });
+                }
+                catch(e){
+                    console.error(e);
+                    alert("요청처리 실패");
+                    return;
+                }
+
+
+                //가져온 데이터가 있다면 
+                if(json != null){
+                    window.location.href = `view.html?id=${id}`;
+                }
+
+            });
+        </script>
+    </div>
+</body>
+
+</html>

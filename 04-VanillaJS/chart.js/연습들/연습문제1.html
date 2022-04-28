@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="dataset.js"></script>
+    <script>
+        //빈 배열 만듬
+        const department = [];
+        const studentCount = [];
+
+        student.forEach((v,i)=>{
+            //d는 i번째 학생의 학과번호 
+            d = v.deptno;
+            //p는 deparment 배열에 학과번호 값이 있는지 확인
+            p = department.indexOf(d);
+
+            //학과번호가 없다면?
+            if(p == -1){
+                //새로운 학과로 추가
+                department.push(d);
+            }else{
+                //p번쨰 학과에 대응되는 학생수 1증가
+                studentCount[p]++;
+            }
+        });
+    </script>
+</body>
+</html>

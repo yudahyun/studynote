@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .con {
+            display: flex;
+        }
+
+        .box {
+            text-align: center;
+            width: 33%;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="con">
+
+        <div class="box">
+            <h2>학과별 학생 수</h2>
+            <div>
+
+                <canvas id="myChart1"></canvas>
+            </div>
+
+        </div>
+
+        <div class="box">
+            <h2>학년에 따른 평균 나이 변화</h2>
+            <div>
+
+                <canvas id="myChart2"></canvas>
+            </div>
+
+        </div>
+
+
+        <div class="box">
+            <h2>학과별 학생 수</h2>
+            <div>
+
+                <canvas id="myChart3"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="dataset.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script>
+        /*
+        문제 1
+        */
+        //학과명 배열 
+        let department = [];
+        //학과명당 학생 수 
+        let studentCountAll = [];
+
+        for (let i = 0; i < student.length; i++) {
+            // console.log(key.deptno);
+            department[i] = student[i].deptno;
+
+        }
+        // console.log(department);
+        department.forEach(x => {
+            if (studentCountAll[x]) {
+                studentCountAll[x] = studentCountAll[x] + 1;
+            } else {
+                studentCountAll[x] = 0 + 1;
+            }
+        });
+
+        let studentCount = [];
+        for (let i in studentCountAll) {
+            studentCount.push(studentCountAll[i]);
+        }
+        const uniqueDepartment = department.filter((element, index) => {
+            return department.indexOf(element) === index;
+        });
+
+
+        /* 여기서부턴 보여주신 풀이랑 똑같아요 ... ㅎ */
+
+        /*
+        배열을 파라미터로 받아 평균을 리턴하는 함수*/
+        function getAvg(data) {
+            let sum = 0;
+            data.forEach((v, i) => {
+                sum += v;
+
+            });
+            return sum / data.length;
+        }
+
+        /*
+                문제 2
+        */
+        const ageInfo = [];
+        var nowYear = new Date().getFullYear();
+
+
+        student.forEach((v, i) => {
+            const key = v.grade + "학년";
+            const birthYear = parseInt(v.birthdate.substring(0, 4));
+            const age = nowYear - birthYear + 1;
+
+            if (ageInfo[key] === undefined) {
+                ageInfo[key] = [age];
+            } else {
+                ageInfo[key].push(age);
+            }
+        });
+        const level = [];
+        const age = [];
+        for (let key in ageInfo) {
+            level.push(key);
+            age.push(getAvg(ageInfo[key]));
+        }
+
+
+        for (let i = 0; i < level.length - 1; i++) {
+            for (let j = i + 1; j < level.length; j++) {
+                const x = parseInt(level[i]);
+                const y = parseInt(level[j]);
+
+                if (x > y) {
+                    let tmp = level[i];
+                    level[i] = level[j];
+                    level[j] = tmp;
+
+                    tmp = age[i];
+                    age[i] = age[j];
+                    age[j] = tmp;
+                }
+            }
+        }
+        /*
+              문제 3
+         */
+
+
+        const bodyInfo = {} ;
+         student.forEach((v,i)=>{
+            const key = v.grade +"학년";
+            if(bodyInfo[key]===undefined){
+                bodyInfo[key]= { height:[v.height],weight:[v.weight]};
+            }else {
+                bodyInfo[key].height.push(v.height);
+                bodyInfo[key].weight.push(v.weight);
+            }
+         });
+
+         const grade =[];
+         const height =[];
+         const weight=[];
+
+        for(let key in bodyInfo){
+            grade.push(key);
+            height.push(getAvg(bodyInfo[key].height));
+            weight.push(getAvg(bodyInfo[key].weight));
+        }         
+        for (let i = 0; i < grade.length - 1; i++) {
+            for (let j = i + 1; j < grade.length; j++) {
+                const x = parseInt(grade[i]);
+                const y = parseInt(grade[j]);
+
+                if (x > y) {
+                    let tmp =grade[i];
+                    grade[i] = grade[j];
+                    grade[j] = tmp;
+
+
+                     tmp =height[i];
+                    height[i] = height[j];
+                    height[j] = tmp;
+
+                    tmp = weight[i];
+                    weight[i] = weight[j];
+                    weight[j] = tmp;
+                }
+            }
+        }
+        
+        const myChart1 = document.getElementById('myChart1');
+        new Chart(myChart1, {
+            type: "bar",
+            data: {
+                labels: uniqueDepartment,
+                datasets: [{
+                    label: "학생 수",
+                    data: studentCount,
+                    borderWidth: 0.5,
+                    color: "#000",
+                    backgroundColor: "#000",
+                }]
+            },
+            option: {
+                maintainAspectRatio: true,
+                indexAxis: "y",
+            }
+
+        });
+        /*
+        문제 3
+        */
+        const myChart2 = document.getElementById('myChart2');
+        new Chart(myChart2, {
+            type: "line",
+            data: {
+                labels: level,
+                datasets: [{
+                    label: "학생 수",
+                    data: age,
+                    borderWidth: 3,
+                    color: "#000",
+                    backgroundColor: "#000",
+                }]
+            },
+            option: {
+                maintainAspectRatio: true,
+                indexAxis: "y",
+            }
+
+        });
+        const myChart3 = document.getElementById('myChart3');
+        new Chart(myChart3, {
+            type: "bar",
+            data: {
+                labels: grade,
+                datasets: [{
+                    label: "키",
+                    data: height,
+                    borderWidth: 0.5,
+                    color: "#000",
+                    backgroundColor: "#000",
+                },
+                {
+                    label: "몸무게",
+                    data: weight,
+                    borderWidth: 0.5,
+                    color: "#000",
+                    backgroundColor: "#000",
+                }]
+            },
+            option: {
+                maintainAspectRatio: true,
+                indexAxis: "y",
+            }
+
+        });
+    </script>
+
+
+</body>
+
+</html>

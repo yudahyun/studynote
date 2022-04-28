@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hi</h1>
+    <p>나는 팝업 샘플 페이지</p>
+    <a href="#" id="close">콱씨 ㅋ </a>
+    <script>
+        document.querySelector("#close").addEventListener("click",e=>{
+            e.preventDefault();
+            self.close();
+            //또는
+            //window.close();
+        });
+    </script>
+</body>
+</html>

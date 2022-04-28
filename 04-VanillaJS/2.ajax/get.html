@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text-success {
+            color: #0066ff;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Simple Get</h1>
+    <a href="./backend/hello.html">move to hello.html</a>
+    <a href="#" id="btn">load hellow.html</a>
+    <div id="console"></div>
+    <script>
+        // document.querySelectorAll(".a").forEach((v, i) => {
+
+            // const href = v.currentTarget.getAttribute(href);
+            
+
+            document.querySelector("#btn").addEventListener("click", e => {
+                e.preventDefault();
+
+                const xhr = new XMLHttpRequest(); //Ajax 기능을 수행하는 통신 객체
+                const method = "GET"; //백엔드 페이지에 접속하는 방식 (GET,POST,PUT,DELETE)
+                const url = "./backend/hello.html"; //요청(접속)할 대상 페이지 주소 -> 이 파일의 소스코드를 읽어옴
+                //xhr.open(metod, url) //요청을 초기화 --> 통신 준비를 마침
+
+                //xhr 객체의 상태가 변화할 때 마다 호출되는 이벤트
+                //--> 총 4번 호출된다.(호출완료,접속시도,통신중,통신완료)
+                //각각의 상태는 target,readyState,라는 값을 통해 조회할 수있다.
+                xhr.onreadystatechange = e => {
+                    console.log(e);
+
+                    //이벤트 정보 안에 포함된 AJax 처리 결과를 별도의 변수에 복사
+                    const ajax = e.target;
+
+                    //통신 객체의 통신 상태에 따른 분기 처리
+                    switch (ajax.readyState) {
+                        case XMLHttpRequest.OPENED: //준비완료 -> xhr 객체의 요청이 초기화 됨 -> 로딩바 출현
+                            console.log("xhr 객체의 요청이 초기화 됨");
+                            break;
+
+                        case XMLHttpRequest.HEADERS_RECEIVED: //접속시도 (일반적인 경우에 사용하지 않음)
+                            console.log("접속시도...");
+                            break;
+                        case XMLHttpRequest.LOADING: //통신중 (일반적인 경우에 사용하지 않음)
+                            console.log("통신을 통한 데이터 수신중...");
+                            break;
+                        case XMLHttpRequest.DONE: //통신중 (일반적인 경우에 사용하지 않음)
+                            console.log("통신 종료 (성공 혹은 에러)");
+                            break;
+
+                            //1) ajax.state의 값을 통해 성공,실패 여부를 판단해야 한다.
+                            // -200 : OK(성공)
+                            if (ajax.status == 200) { // 백엔드 통신에 성공한 경우 -->OK
+                                console.log("statusText: %s", ajax.statusText);
+
+                                //JS가 ajax를 통해 백엔드로 부터 읽어온 내용 ==> hello.html의 소수코드 ==> string 변수
+
+                                const req = ajax.responseText;
+                                
+                                document.querySelector("#console").insertAdjacentHTML("beforeend",
+                                req);
+                            } else { //백엔드와의 통신에 실패한 경우 ==> Fail
+                                const s = parseInt(ajax.status / 100);
+                                // 500번 대의 경우 100% 백엔드 에러 상황
+                                
+                                if (s == 4) {
+                                    console.log("[%d] %s - 서버의 응답이 없습니다.", ajax.status, ajax
+                                        .statusText);
+                                } else if (s == 5) {
+                                    console.log("[%d]%s - 서버의 응답이 없습니다", ajax.status, ajax
+                                        .statusText);
+                                } else {
+                                    console.log("[%d] %s - 요청에 실패했습니다.", ajax.status, ajax
+                                        .statusText);
+                                }
+                            }
+                            break;
+                    }
+                };
+
+                xhr.open(method,url);
+                xhr.send();
+            });
+        // });
+    </script>
+</body>
+
+</html>

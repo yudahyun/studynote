@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .loading{
+            background: red;
+            width: 100px;
+            display: none;
+        }
+        .active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading"></div>
+    <h1>Dept Item</h1>
+    <a href="#" class="mylink" data-deptno="101">컴퓨터 공학과</a>
+    <a href="#" class="mylink" data-deptno="102">멀티미디어학과</a>
+    <a href="#" class="mylink" data-deptno="201">전자 공학과</a>
+    <a href="#" class="mylink" data-deptno="202">기계 공학과</a>
+    
+    <dl id="dept-item">
+        <dt>학과번호</dt>
+        <dd class="id"></dd>
+        <dt class="dname"></dt>
+        <dt>학과위치</dt>
+        <dd class="loc"></dd>
+    </dl>
+
+    <script src="./libs/ajaxPromiseHelper.js"></script>
+    <script>
+        const mylink=document.querySelectorAll(".mylink");
+        mylink.forEach((v,i)=>{
+            v.addEventListener("click",async(e)=>{
+                
+                 e.preventDefault();
+                 const loading = document.querySelector(".loading");
+                 loading.classList.add("active");
+                
+                const deptno = e.currentTarget.dataset.deptno;
+                console.log(deptno);
+
+                document.querySelector("#dept-item").style.display ="block";
+
+                let json =null;
+
+                try{
+                    const url ="http://localhost:3000/department/"+deptno;
+                    // console.log(url);
+                    json =await ajaxPromiseHelper(url);
+                    console.log(json);
+                }catch(e){
+                    console.error(e);
+                    alert(e.msg);
+                }finally{
+                    loading.classList.remove("active");
+                }
+                if(json != null){
+                    document.querySelector(".id").innerHTML =json.id;
+                    document.querySelector(".dname").innerHTML =json.dname;
+                    document.querySelector(".loc").innerHTML =json.loc;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>세션 스토리지</h1>
+    <select name="" id="key" >
+        <option value="name">이름</option>
+        <option value="age">나이</option>
+    </select>
+    <input type="text" name="" id="value">
+    <button type="button" id="save">save</button>
+    <button type="button" id="read">read</button>
+    <button type="button" id="remove">remove</button>
+    <button type="button" id="clear">clear</button>
+    <script>
+        //세이브 버튼 선택하면 
+        document.querySelector("#save").addEventListener("click",e=>{
+            //일단 선택한 건 뭐임
+            const key = document.querySelector("#key");
+            console.log(key);
+            const keyChoose = key[key.selectedIndex].value;
+            console.log(keyChoose);
+            //일단 값 가져와
+            const value = document.querySelector("#value").value;
+            console.log(value);
+            window.sessionStorage.setItem(keyChoose,value);
+        });
+        document.querySelector("#read").addEventListener("click",e=>{
+            //일단 선택한 건 뭐임
+            const key = document.querySelector("#key");
+            console.log(key);
+            const keyChoose = key[key.selectedIndex].value;
+            console.log(keyChoose);
+
+            const savedDate = sessionStorage.getItem(keyChoose);
+            alert(savedDate);
+           
+        });
+    
+    </script>
+
+</body>
+</html>

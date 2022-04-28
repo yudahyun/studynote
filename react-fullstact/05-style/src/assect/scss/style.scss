@@ -1,0 +1,20 @@
+@import "./color.scss";
+@import "./common.scss";
+
+.myScss{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color:#fff;
+    font-weight: bold;
+    .myScssBox{
+        text-align: center;
+        &.red{background-color: $red; @include mymixin(1);}
+        &.green{background-color: $green; @include mymixin(1);}
+        &.blue{background-color: $blue; @include mymixin(1);}
+        &.orange{background-color: $orange; @include mymixin(1);}
+        &.yellow{background-color: $yellow; @include mymixin(1);}
+        &.pink{background-color: $pink; @include mymixin(1);}
+
+    }
+}

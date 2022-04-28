@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .popup {
+            border: 1px solid #000;
+            background-color: #eee;
+            ;
+            box-shadow: 0 0 10px #ccc;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 300px;
+            z-index: 1;
+            display: none;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="popup">
+        <h2>
+            팝업 창영역입니다.
+        </h2>
+        <label>
+            <input type="checkbox" id="no-open" value="Y">
+            15초간 이창 열지 않음
+        </label>
+        <button type="button" id="close-popup">
+            닫기
+        </button>
+    </div>
+    <script>
+        class CookieHelper {
+            //constructor (){}
+            /*
+             *쿠키를 저장한다. 저장시 이름과 값은 내부에서 urlencodeing 처리한다.
+             *@param{string} name    저장할 쿠키의 이름
+             *@param{string} value   저장할 쿠키의 값
+             *@param{ json } options 유효시간,유효 경로, 도메인 등을json으로 묶어보낸다.
+             */
+
+            setCookie(name, value, options = {}) {
+                if (options.path == undefined) {
+                    options.path = "/";
+                }
+
+                /*expires 값이 Date 클래스의 객체라면 UTCString 타입으로 변환함.
+                max-age 가  있으면 사용 안해도 됨 */
+                //-->2021-11-25T05:90:30.569Z
+                //옵션의 클래스가 Date인 경우
+                if (options.expires instanceof Date) {
+                    options.expires = option.expires.toUTCString();
+                }
+
+                //"이름=값 형식으로 저장할 문자열 만듬"
+                let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+                //option에 명시된 정보가 있다면 추가함
+                
+                for (let optionKey in options) {
+                    updatedCookie += ";" + optionKey;
+                    let optionValue = options[optionKey];
+                    if (optionValue !== true) {
+                        updatedCookie += "=" + optionValue;
+                    }
+                }
+
+                //저장
+                document.cookie = updatedCookie;
+            }
+            deleteCookie(name) {
+                //max-age 값을 0으로 설정하여 name에 대한 
+                //쿠키가 즉시 삭제 하도록 설정함
+                this.setCookie(name, "", {
+                    "max-age": 0
+                });
+            }
+
+            getCookie(name) {
+                //주어진 이름에 대헤 "name=<value>"패턴을 찾아 value 부분만 변환
+
+                    let matches =document.cookie.match(new RegExp(
+                        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                    ));
+                    //반환할 값이 있다면 decoding을 수행하고 없다면 undefiend를 변환함
+                    return matches ? decodeURIComponent(matches[1]) :undefined;
+                     
+
+            }
+        }
+    </script>
+    <script>
+        const cookieHelper = new CookieHelper();
+
+        //쿠키가 저장되어 있지 않다면 레이어 팝업을 화면에 표시함
+        // --> 쿠기가 저장 되어있다면 이 if 문을 건너뜀
+
+        if (cookieHelper.getCookie("noPopup") == undefined) {
+            document.querySelector(".popup").style.display = "block";
+        }
+
+        // 닫기버튼에 대한 클릭 이벤트
+
+        document.querySelector("#close-popup").addEventListener("click",e=>{
+            //일단 팝업을 닫는다
+            document.querySelector(".popup").style.display="none";
+
+            //체크가 되었다면 쿠기 생성 -> 새로고침되었을 때 코드가 실행되지 않을 것이다.
+            if(document.querySelector("#no-open").checked){
+                cookieHelper.setCookie("noPopup","Y",{"max-age":15});
+
+                //오늘 하루 이창 열지 않음 24시간
+                // cookieHelper.setCookie("noPopup","Y",{"max-age":60*60*24});
+            };
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="console"></h1>
+    <a href="querystring.html?weekday=mon">링크1</a> |
+    <a href="querystring.html?weekday=sun">링크2</a>
+
+    <hr>
+    <script>
+        
+        //지금 상태의URL 가져와 
+        const query = location.search.substring(1);
+        console.log(query);
+        //문자열 배열로 바꿔
+        const params = query.split("&");
+
+        console.log(params);
+        //데이터 만들어
+        const mydata = {};
+
+
+        //배열로 들어온거에 반복돌아
+        params.map((v,i)=>{
+            //이름 = 값 ..>tmp[0] 이름, tmp [1]는 값
+            //임시저장 = 반복중에 =로 바꿔 
+            
+            const tmp =v.split("=");
+            //빈배열{이름:[값]};
+            mydata[tmp[0]] =tmp[1];
+        });
+
+        // console.log(mydata);
+        //메세지 공간 만들어
+        let msg = "";
+
+        //내 데이터의 요일이 일치할때까즤 
+        switch(mydata.weekday){
+            case "mon":
+                msg = "월요일입니다";
+                break;
+            case "sun":
+                msg ="일요일입니다,";
+                break;
+        }
+        //메세지 넣어
+        document.querySelector("#console").innerHTML =msg;
+    </script>
+</body>
+</html>

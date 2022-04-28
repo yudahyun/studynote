@@ -1,0 +1,21 @@
+@mixin  mymixin($size) {
+    $calc :100px;
+
+    @if $size % 2 == 0{
+        $calc : $calc + 50px;
+    
+    }@else if $size % 3 == 0{
+
+    }@else {
+        $calc : $calc;
+    }
+    width: $calc;
+    line-height:32px * 2 ;
+    height: 32px * 2;
+    transition:  all 0.3s ease-in;
+
+    &:hover{
+        transform: scale(1.2,1.2);
+    }
+    
+}
