@@ -1,0 +1,136 @@
+body,
+button,
+input,
+select,
+table,
+textarea {
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+    font-size: 12px;
+    -webkit-text-size-adjust: none;
+}
+
+body {
+    background-color: #f5f6f7;
+}
+
+.con {
+    padding: 10px;
+    max-width: 512px;
+    margin: 0 auto;
+}
+
+.con h1 {
+    background: url(https://ssl.pstatic.net/static/nid/join/m_logo_naver.png);
+    background-size: 165px auto;
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    width: 165px;
+    height: 37px;
+    margin: 20px auto 50px;
+    background-position: center center;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+label.title {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 2;
+    text-indent: 2px;
+    margin-top: 10px;
+}
+label.title > span{
+    color: #8e8e8e;
+    font-size: 12px;
+}
+input:focus,
+select:focus{
+    outline: #03c75a ;
+    border:2px solid #03c75a; 
+}
+input,
+select {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 51px;
+    font-size: 15px;
+    border: solid 1px #dadada;
+    padding: 10px 110px 10px 14px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.id-email {
+    position: relative;
+    display: block;
+}
+
+.id-email span {
+    position: absolute;
+    display: block;
+    right: 10px;
+    top: 17px;
+    font-size: 14px;
+    color: #666;
+}
+
+.psw-lock {
+    position: relative;
+    display: block;
+}
+
+.psw-lock span {
+    position: absolute;
+    display: block;
+    right: 10px;
+    top: 45px;
+    z-index: 1;
+    font-size: 14px;
+    color: #666;
+}
+
+.b-day-field {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+.b-day-field input,
+.b-day-field select {
+    width: calc((100% / 3) - 20px);
+    padding: 10px 0 10px 14px;
+    flex-grow: 1;
+}
+.num-field{
+    width: 100%;
+    display: flex;
+    margin: 10px 0;
+    gap:10px;
+}
+.btn-style{
+    display: block;
+    width: 100%;
+    padding: 15px 0 15px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    color: #fff;
+    border: solid 1px rgba(0,0,0,.08);
+    background-color: #03c75a;
+}
+
+.num-field .btn-style{ 
+    width: 115px;
+    padding: 17px;
+    font-weight: 400;
+    font-size: 15px;
+}
+#btn1{
+    margin: 30px auto 9px;
+}
+

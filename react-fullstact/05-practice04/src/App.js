@@ -1,16 +1,20 @@
 import React from "react";
-import {Link,Routes,Route} from "react-router-dom";
+import Header from "./components/Header";
+import Navbar from "./components/Navbar";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
+import Meta from "./components/Meta";
+import GlobalStyles from "./GlobalStyles";
+
 function App() {
   return (
     <div>
-      <nav>
-        <Link to="/pages"></Link>
-        <Link to=""></Link>
-      </nav>
-      <Routes>
-        <Route path='/pages' element={<Pages></Pages>}/>
-      </Routes>
-      <Pages>
+      <GlobalStyles />
+      <Meta />
+      <Header />
+      <Navbar />
+      <Content />
+      <Footer />
     </div>
   );
 }

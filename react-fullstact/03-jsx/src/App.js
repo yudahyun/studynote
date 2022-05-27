@@ -11,11 +11,11 @@ import Loop2 from "./pages/Loop2";
 import Loop3 from "./pages/Loop3";
 
 
-import Practices01 from "./practice/Practice01";
-import Practices02 from "./practice/Practice02";
-import Practices03 from "./practice/Practice03";
-import Practices04 from "./practice/Practice04";
-import Practices05 from "./practice/Practice05";
+// import Practices01 from "./practice/Practice01";
+// import Practices02 from "./practice/Practice02";
+// import Practices03 from "./practice/Practice03";
+// import Practices04 from "./practice/Practice04";
+// import Practices05 from "./practice/Practice05";
 
 function App() {
   return (
@@ -44,7 +44,7 @@ function App() {
         <Route path="/loop3" element={<Loop3/>}/>
       </Routes>
 
-      <hr/>
+      {/* <hr/>
       <Practices01/>
       <hr/>
       <Practices02/>
@@ -53,7 +53,7 @@ function App() {
       <hr/>
       <Practices04/>
       <hr/>
-      <Practices05/>
+      <Practices05/> */}
     </div>
   );
 }
